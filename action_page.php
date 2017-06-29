@@ -8,6 +8,22 @@ echo "You have selected following ".$checked_count." option(s): <br/>";
 foreach($_POST['service'] as $selected) {
 echo "<p>".$selected ."</p>";
 }
+/*Email function*/
+	$selectedProjects = implode(', ', $_POST['service']);
+	$emailm='youremail@domain.com';
+	$ToEmail ='youremail@domain.com'; 
+	$EmailSubject ="Service Request";  
+	$mailheader = "From: ".$emailm."\r\n"; 
+	$mailheader .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
+	$MESSAGE_BODY = "     
+	Hello,
+	<br /><br />
+	You have a service Request for<br/><br/>
+	".$selectedProjects."
+	<br /><br />
+	Thank you!";
+	mail($ToEmail, $EmailSubject, $MESSAGE_BODY, $mailheader);
+/*Email function End*/
 echo "Please read and sign the contract below.";
 }
 else{
