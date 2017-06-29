@@ -32,6 +32,7 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
 
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script type="text/javascript" src="scripts/smoothscroll.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Arapey|Source+Serif+Pro" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lobster|Pacifico" rel="stylesheet">
@@ -49,29 +50,28 @@
 
           <div class="tanika-green-bw-logo"></div>
 
-        <form action="/action_page.php" method="post" name="form" id="customer-info">
+        <div id="customer-info">
           <h2>Enter Your Information</h2>
-          <p><b>Name: </b><br><input name="name" type="text" value="">
-          <p><b>Email: </b><br><input name="email" type="text" value="">
-          <p><b>Phone Number: </b><br><input name="phone" type="text" value="">
+          <p><b>Name: </b><br><input name="name" type="text" id="name" style="padding:2px; border:1px solid #CCCCCC; width:180px; height:14px; font-family:Verdana, Arial, Helvetica, sans-serif;font-size:11px;" placeholder="Enter your name" form="form1" />
+          <p><b>Email: </b><br><input name="from" type="text" id="from" style="padding:2px; border:1px solid #CCCCCC; width:180px; height:14px; font-family:Verdana, Arial, Helvetica, sans-serif;font-size:11px;" placeholder="Enter your email" form="form1" />
+          <p><b>Phone Number: </b><br><input name="phone" type="text" id="phone" style="padding:2px; border:1px solid #CCCCCC; width:180px; height:14px; font-family:Verdana, Arial, Helvetica, sans-serif;font-size:11px;" placeholder="Enter your Number" form="form1" />
           <p><b>Are you allergic to latex and/or any cosmetics?</b></p>
           <input type="checkbox" name="allergy" value="yes" class="allergy-yes" onchange="valueChanged()"> Yes<br>
           <input type="checkbox" name="allergy" value="no"> No<br>
 
           <div id="allergy-list">
-          <p><b>Please list your allergies.</b><br><textarea name="allergies"></textarea>
+          <p><b>Please list your allergies.</b><br><input type="textarea" name="allergies" id="allergies" form="form1"/>
           </div>
-        </form>
+        </div>
 
         <h2>Service Categories</h2>
-        <select name="service" id="service-categories">
-          <option value="select-service">Select Service</option>
-          <option value="standard-beauty">Standard Beauty</option>
-          <option value="bridal">Bridal</option>
-          <option value="photoshoots">Photoshoots</option>
-          <option value="mortuary">Mortuary Makeup</option>
+        <select name="service" id="service-categories" >
+          <option value="select-service" >Select Service</option>
+          <option value="standard-beauty" >Standard Beauty</option>
+          <option value="bridal" >Bridal</option>
+          <option value="photoshoots" >Photoshoots</option>
+          <option value="mortuary" >Mortuary Makeup</option>
         </select>
-
         <form action="action_page.php" method="post" id="standard-beauty-services" target="myIframe">
           <h2>Select the service(s) you need</h2>
           <input type="checkbox" name="service[]" value="Silver"> Silver Package - $75<br><span>Full face* with strip lashes</span><br><br>
@@ -82,8 +82,8 @@
           <input type="checkbox" name="service[]" value="1-on-1"> 1-on-1 Package - $150<br><span>2-hour session</span><br><br>
           <input type="checkbox" name="service[]" value="Senior"> Senior Citizens - $50<br><span>Full face* -Lashes, highlight & contour are NOT included.
 </span><br><br>
-          <input type="checkbox" name="service[]" value="Lashes"> Lashes - $12/$25<br><span>$12 for strip lashes / $25 for individuals. Applied with non-latex glue</span><br><br>
-<p>* "Full face" consists of eyebrow shaping, eyeshadow application with strip lashes, eyeliner, color correction, foundation, blush and lipstick. Individual lash application is an additional cost.</p><br>
+          <input type="checkbox" name="service[]" value="Lashes"> Lashes - $12/$25<br><span>$12 for strip lashes / $25 for individuals. Applied with non-latex glue</span><br>
+<p>* "Full face" consists of eyebrow shaping, eyeshadow application with strip lashes, eyeliner, color correction, foundation, blush and lipstick. Individual lash application is an additional cost.</p>
           <input type="submit" name="submit" value="Submit" id="submit">
         </form>
         <iframe name="myIframe" id="iframe" src="action_page.php">
@@ -123,6 +123,7 @@
 
         <form action="action_page.php" id="mortuary-makeup" method="post" target="myIframe4">
           <input type="checkbox" name="service[]" value="Mortuary Makeup"> Mortuary Makeup<br>
+          <br><br>
           <input type="submit" value="Submit" id="submit-4" name="submit">
         </form>
         <iframe name="myIframe4" src="action_page.php" id="iframe-4">
@@ -157,16 +158,31 @@
 <b>PAYMENT:</b>  The final balance is due on the day of the event – <span>no exceptions</span>. The person(s) responsible for the entire balance of payment is the person(s) that has a signed booking contract. Acceptable forms of payment are: cash, credit or payment through PayPal. For all credit card payments, a 3% service will be added to each transaction.
  </p>
 
-<p><b>Enter your name here to accept the terms of this contract: </b><br><input name="name" type="text" value=""></p>
-<p><b>Date: </b><br><input name="date" type="text" value="">
+<p><b>Enter your name here to accept the terms of this contract: </b><br>
+<form action="action_page.php" method="post" name="form1" id="form1" style="margin:0px; font-family:Verdana, Arial, Helvetica, sans-serif;font-size:11px; width:300px;" onsubmit="MM_validateForm('from','','RisEmail','subject','','R','verif_box','','R','message','','R');return document.MM_returnValue">
 
-  <img src="captcha_code_file.php"
-  id="captchaimg-orderform" >
-  <br>
-  <label for="message">Enter the code below:</label>
-  <input id="letter-code" name="letter-code" type="text">
+Your Name:<br />
+<input name="name2" type="text" id="name2" style="padding:2px; border:1px solid #CCCCCC; width:180px; height:14px; font-family:Verdana, Arial, Helvetica, sans-serif;font-size:11px;" placeholder="Enter Your Name" />
+<br />
+<br />
 
-<button name="sign_submit" id="sign">Sign & Submit</button>
+Date:<br />
+<input name="date" type="text" id="date" style="padding:2px; border:1px solid #CCCCCC; width:180px; height:14px; font-family:Verdana, Arial, Helvetica, sans-serif;font-size:11px;" placeholder="" />
+<br />
+<br />
+
+Type verification image:<br />
+<input name="verif_box" type="text" id="verif_box" style="padding:2px; border:1px solid #CCCCCC; width:180px; height:14px;font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11px;"/>
+<img src="verificationimage.php?<?php echo rand(0,9999);?>" alt="verification image, type it in the box" width="50" height="24" align="absbottom" /><br />
+<br />
+
+<!-- if the variable "wrong_code" is sent from previous page then display the error field -->
+<?php if(isset($_GET['wrong_code'])){?>
+<div style="border:1px solid #990000; background-color:#ffffff; padding:4px; padding-left:6px;width:295px;">Please enter the above verification code only</div><br /> 
+<?php ;}?>
+
+<input name="sign-Submit" type="submit"  value="Send Message"/>
+</form>
 
 <div class="tanika-contact">
     <p><b>TANIKA GREEN</b><br>
